@@ -11,7 +11,7 @@ const authentication = async function (req, res, next) {
 
         let token = bearToken.split(" ")[1];
 
-        let decodedToken = jwt.verify(token, "//groupNumber_15||best_coders//");
+        let decodedToken = jwt.verify(token, "//groupNumber_13||best_coders//");
 
         req.userId = decodedToken.userId;
 

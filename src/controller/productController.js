@@ -2,6 +2,10 @@ const productModel = require('../models/productModel');
 const { uploadFile } = require("../aws-service/aws");
 const { isValidData, isValidRequestBody, isValidObjectId, isValidPrice, isValidEnum } = require("../validator/validation");
 
+
+
+// **************************************< Create Product >******************************************
+
 const createProducts = async (req, res) => {
     try {
 
@@ -70,7 +74,9 @@ const createProducts = async (req, res) => {
     }
 }
 
-/////////////////////////////////////////////////////////////////
+// **************************************< get Product by filter >******************************************
+
+
 const getProductByFilter = async function (req, res) {
     try {
         let data = req.query;
@@ -138,6 +144,8 @@ const getProductByFilter = async function (req, res) {
 };
 
 
+// **************************************< get Product by Id >******************************************
+
 const getProductByProductId = async (req, res) => {
     try {
         let productId = req.params.productId;
@@ -164,6 +172,8 @@ const getProductByProductId = async (req, res) => {
     }
 }
 
+
+// **************************************< update Product By Id >******************************************
 
 const updateProductById = async (req, res) => {
     try {
@@ -276,6 +286,7 @@ const updateProductById = async (req, res) => {
             productData["productImage"] = productUrl;
         }
 
+       // DB call and update Product
 
         let result = await productModel.findByIdAndUpdate(productId, updateProduct, { new: true });
 
@@ -287,6 +298,7 @@ const updateProductById = async (req, res) => {
     }
 }
 
+// **************************************< Delete Product >******************************************
 
 const deleteProductById = async (req, res) => {
     try {

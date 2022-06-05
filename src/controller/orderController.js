@@ -5,10 +5,16 @@ const cartModel = require("../models/cartModel");
 
 const { isValidData, isValidRequestBody, isValidObjectId, isValidPrice, isValidEnum } = require("../validator/validation");
 
+
+
+// **************************************< Create Order >*******************************************
+
+
 const createOrder = async (req, res) => {
   try {
 
     let userId = req.params.userId;
+
     if (!isValidObjectId.test(userId)) {
       return res.status(400).send({ status: false, message: "Invalid user id" });
     }
@@ -80,6 +86,9 @@ const createOrder = async (req, res) => {
     res.status(500).send({ status: false, error: error.message });
   }
 };
+
+
+// ********************************************< update Order >*********************************************
 
 const updateOrder = async (req, res) => {
 

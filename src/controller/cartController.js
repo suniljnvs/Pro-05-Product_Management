@@ -3,6 +3,9 @@ const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
 const { isValidRequestBody, isValidObjectId } = require("../validator/validation");
 
+
+// ******************************** < Create Cart >********************************************
+
 const createCart = async (req, res) => {
     try {
         let userId = req.params.userId;
@@ -123,6 +126,7 @@ const createCart = async (req, res) => {
     }
 };
 
+// **************************************< Update Cart>*********************************************
 
 const updateCart = async (req, res) => {
     try {
@@ -249,6 +253,10 @@ const updateCart = async (req, res) => {
     }
 };
 
+
+
+// ***********************************< get Cart details >******************************************
+
 const getCart = async (req, res) => {
     try {
 
@@ -283,6 +291,9 @@ const getCart = async (req, res) => {
         res.status(500).send({ status: false, message: error.message });
     }
 }
+
+
+// **************************************< Delete Cart>******************************************
 
 const deleteCart = async (req, res) => {
     try {

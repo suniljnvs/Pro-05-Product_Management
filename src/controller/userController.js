@@ -11,6 +11,7 @@ const userModel = require("../models/userModel");
 
 const { isValidData, isValidRequestBody, isValidEmail, isValidPhone, pincodeValid, isValidObjectId } = require("../validator/validation");
 
+
 //********************< Create User Starts >*********************//
 
 const userRegister = async function (req, res) {
@@ -23,6 +24,7 @@ const userRegister = async function (req, res) {
         }
         // Extract all attribute destructure
         let { fname, lname, email, phone, profileImage, password, address } = requestBody;
+
         // Validation starts--------------
 
         if (!isValidData(fname)) {
@@ -116,6 +118,9 @@ const userRegister = async function (req, res) {
 
         let data = { fname, lname, email, profileImage, phone, password: hash, address }
 
+
+        // Create user documents with above data 
+
         let creatUser = await userModel.create(data);
 
         res.status(201).send({ status: true, message: "User created successfully", data: creatUser })
@@ -125,11 +130,8 @@ const userRegister = async function (req, res) {
     }
 }
 
-//********************< Create User Ends >*********************//
 
-
-
-//////////////////// loginUser//////////////////////////////////////////////
+// **************************************< loginUser >******************************************
 
 const loginUser = async (req, res) => {
     try {
@@ -164,7 +166,7 @@ const loginUser = async (req, res) => {
         let token = jwt.sign({
             userId: checkEmail._id,
             exp: Math.floor(Date.now() / 1000) + (60 * 60 * 60)
-        }, "//groupNumber_15||best_coders//")
+        }, "//groupNumber_13||best_coders//")
 
         res.setHeader("authorization", "bearerToken", token)
 
@@ -175,6 +177,9 @@ const loginUser = async (req, res) => {
     }
 }
 
+
+
+// **************************************< getUser >******************************************
 
 const getUser = async function (req, res) {
     try {
@@ -201,6 +206,9 @@ const getUser = async function (req, res) {
     }
 };
 
+
+
+// **************************************< updateUser >******************************************
 
 const updateUserDetails = async function (req, res) {
     try {
